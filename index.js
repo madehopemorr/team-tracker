@@ -1,9 +1,6 @@
 const { prompt } = require("inquirer");
 const logo = require("asciiart-logo");
 const db = require("./db");
-const { inherits } = require("util");
-const { removeEmployee, updateEmployeeRole, updateEmployeeManager, removeDepartment, removeRole } = require("./db");
-const { allowedNodeEnvironmentFlags } = require("process");
 require("console.table");
 
 init();
