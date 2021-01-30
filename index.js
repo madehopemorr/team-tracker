@@ -43,7 +43,7 @@ async function loadMainPrompts() {
                 },
                 {
                     name: "Update Employee Role",
-                    value: "UPDATE_EMPPLOYEE_ROLE"
+                    value: "UPDATE_EMPLOYEE_ROLE"
                 },
                 {
                     name: "Update Employee Manager",
@@ -124,7 +124,9 @@ async function viewEmployees() {
 }
 
 async function viewEmployeesByDepartment() {
-    const departmentChoices = departments.map(({ id, name}) => ({
+    const departments = await db.findAllDepartments();
+    
+    const departmentChoices = departments.map(({ id, name }) => ({
         name: name,
         value: id
     }));
@@ -332,6 +334,14 @@ async function removeRole() {
     await db.removeRole(roleId);
 
     console.log("Removed role from the database");
+
+    loadMainPrompts();
+}
+async function viewRoles() {
+    const roles = await db.findAllRoles();
+
+    console.log("\n");
+    console.table(roles);
 
     loadMainPrompts();
 }
